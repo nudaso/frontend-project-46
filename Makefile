@@ -9,3 +9,6 @@ test:
 
 test-coverage:
 	npx jest --coverage --coverageProvider=v8
+
+install-deps:
+	npm ci
