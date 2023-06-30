@@ -1,0 +1,14 @@
+name: my-check
+
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: make lint
+      - uses: paambaati/codeclimate-action@v3.2.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secret.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-coverage
