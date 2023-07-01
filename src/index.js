@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import _ from 'lodash';
+import parse from './parsers.js';
 
 const getAbsolutePath = (pathToFile) => {
   if (path.isAbsolute(pathToFile)) {
@@ -15,11 +16,14 @@ const gendiff = (filepath1, filepath2) => {
   const absolutePath1 = getAbsolutePath(filepath1);
   const absolutePath2 = getAbsolutePath(filepath2);
 
+  const extname1 = path.extname(filepath1);
+  const extname2 = path.extname(filepath2);
+
   const data1 = getFileContent(absolutePath1);
   const data2 = getFileContent(absolutePath2);
 
-  const obj1 = JSON.parse(data1);
-  const obj2 = JSON.parse(data2);
+  const obj1 = parse(data1, extname1);
+  const obj2 = parse(data2, extname2);
 
   const allKeys = [...Object.keys(obj1), ...Object.keys(obj2)];
   const uniqFilteredKeys = _.sortedUniq(_.sortBy(allKeys));
