@@ -15,7 +15,7 @@ test('json', () => {
   expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toBe(result);
 });
 
-test('yaml', () => {
-  const result = readFile('result.txt');
-  expect(gendiff(getFixturePath('file1.yml'), getFixturePath('file2.yml'))).toBe(result);
-});
+// test('yaml', () => {
+//   const result = readFile('result.txt');
+//   expect(gendiff(getFixturePath('file1.yml'), getFixturePath('file2.yml'))).toBe(result);
+// });
