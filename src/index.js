@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import _ from 'lodash';
 import parse from './parsers.js';
+import analyzer from './analyzer.js';
 
 const getAbsolutePath = (pathToFile) => {
   if (path.isAbsolute(pathToFile)) {
@@ -25,28 +25,7 @@ const gendiff = (filepath1, filepath2) => {
   const obj1 = parse(data1, extname1);
   const obj2 = parse(data2, extname2);
 
-  const allKeys = [...Object.keys(obj1), ...Object.keys(obj2)];
-  const uniqFilteredKeys = _.sortedUniq(_.sortBy(allKeys));
-
-  const inside = uniqFilteredKeys.reduce((acc, key) => {
-    const value1 = obj1[key];
-    const value2 = obj2[key];
-
-    if (value1 === value2) {
-      return [...acc, `  ${key}: ${value2}`];
-    }
-
-    if (Object.hasOwn(obj1, key) && !Object.hasOwn(obj2, key)) {
-      return [...acc, `- ${key}: ${value1}`];
-    }
-    if (!Object.hasOwn(obj1, key) && Object.hasOwn(obj2, key)) {
-      return [...acc, `+ ${key}: ${value2}`];
-    }
-
-    return [...acc, `- ${key}: ${value1}`, `+ ${key}: ${value2}`];
-  }, []);
-
-  return `{\n${inside.join('\n')}\n}`;
+  return analyzer(obj1, obj2);
 };
 
 export default gendiff;
