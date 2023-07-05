@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import parse from './parsers.js';
-import analyzer from './analyzer.js';
+import buildADT from './buildADT.js';
+import status from './status.js';
 
 const getAbsolutePath = (pathToFile) => {
   if (path.isAbsolute(pathToFile)) {
@@ -11,6 +12,12 @@ const getAbsolutePath = (pathToFile) => {
 };
 
 const getFileContent = (pathToFile) => fs.readFileSync(pathToFile, 'utf-8');
+
+export const view = (adt) => {
+  const result = adt.flatMap((node) => {
+    
+  })
+};
 
 const gendiff = (filepath1, filepath2) => {
   const absolutePath1 = getAbsolutePath(filepath1);
@@ -25,7 +32,9 @@ const gendiff = (filepath1, filepath2) => {
   const obj1 = parse(data1, extname1);
   const obj2 = parse(data2, extname2);
 
-  return analyzer(obj1, obj2);
+  const ADT = buildADT(obj1, obj2);
+  
+  return view(ADT);
 };
 
 export default gendiff;
