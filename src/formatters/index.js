@@ -7,6 +7,8 @@ const formater = (name) => {
       return plain;
     case 'stylish' :
       return stylish;
+    case 'json':
+      return JSON.stringify;
   }
 };
 
