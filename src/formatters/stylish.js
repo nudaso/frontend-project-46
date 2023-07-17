@@ -1,4 +1,4 @@
-import status from "./status.js";
+import status from "./../status.js";
 
 
 const generateSpace = (count, space = '  ') => space.repeat(count);
