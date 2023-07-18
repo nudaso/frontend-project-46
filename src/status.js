@@ -3,7 +3,7 @@ const status = {
   added: 'added',
   adsent: 'adsent',
   updated: 'updated',
-  guts: 'guts'
-}
+  guts: 'guts',
+};
 
 export default status;

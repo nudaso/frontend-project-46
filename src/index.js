@@ -28,7 +28,7 @@ const gendiff = (filepath1, filepath2, format = 'stylish') => {
 
   const ADT = buildADT(obj1, obj2);
   const formater = getFormater(format);
-  
+
   return formater(ADT);
 };
 

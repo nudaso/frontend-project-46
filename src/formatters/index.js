@@ -5,10 +5,12 @@ const formater = (name) => {
   switch (name) {
     case 'plain':
       return plain;
-    case 'stylish' :
+    case 'stylish':
       return stylish;
     case 'json':
       return JSON.stringify;
+    default:
+      throw new Error('error');
   }
 };
 

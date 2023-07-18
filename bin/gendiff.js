@@ -10,7 +10,7 @@ program
   .argument('<filepath1>')
   .argument('<filepath2>')
   .action((filepath1, filepath2, f) => {
-    const {format} = f;
+    const { format } = f;
     console.log(gendiff(filepath1, filepath2, format));
   });
 program.parse();

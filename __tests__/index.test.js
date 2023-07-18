@@ -23,5 +23,4 @@ test('yaml stylish', () => {
 test('json plain', () => {
   const result = readFile('plainResult.txt');
   expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'plain')).toBe(result);
-  
-})
+});
